@@ -8,6 +8,8 @@ fun main() {
     calculatorTest.minusTest()
     calculatorTest.multiplyTest()
     calculatorTest.divideTest()
+    calculatorTest.divideExceptionTest()
+    calculatorTest.divideExceptionTest2()
 }
 
 class CalculatorTest {
@@ -62,5 +64,43 @@ class CalculatorTest {
         if (calculator.number != 1) {
             throw IllegalStateException()
         }
+    }
+
+    fun divideExceptionTest() {
+        // given
+        val calculator = Calculator(5)
+
+        // expect
+        try {
+            calculator.divide(0)
+        } catch (e: IllegalArgumentException) {
+            // 테스트 성공
+            return
+        } catch (e: Exception) {
+            throw IllegalStateException()
+        }
+
+        throw IllegalStateException("기대하는 예외가 발생하지 않았습니다.")
+    }
+
+    fun divideExceptionTest2() {
+        // given
+        val calculator = Calculator(5)
+
+        // expect
+        try {
+            calculator.divide(0)
+        } catch (e: IllegalArgumentException) {
+            if (e.message != "0으로 나눌 수 없습니다.") {
+                throw IllegalStateException("오류 메세지가 다릅니다.")
+            }
+
+            // 테스트 성공
+            return
+        } catch (e: Exception) {
+            throw IllegalStateException()
+        }
+
+        throw IllegalStateException("기대하는 예외가 발생하지 않았습니다.")
     }
 }
