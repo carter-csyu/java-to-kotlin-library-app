@@ -17,8 +17,7 @@ class CalculatorTest {
         calculator.add(3)
 
         // then
-        val expectedCalculator = Calculator(8)
-        if (calculator != expectedCalculator) {
+        if (calculator.number != 8) {
             throw IllegalStateException()
         }
     }
