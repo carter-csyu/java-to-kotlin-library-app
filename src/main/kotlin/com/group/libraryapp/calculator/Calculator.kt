@@ -1,19 +1,22 @@
 package com.group.libraryapp.calculator
 
 class Calculator(
-    var number: Int,
+    private var _number: Int,
 ) {
 
+    val number: Int
+        get() = this._number
+
     fun add(operand: Int) {
-        this.number += operand
+        this._number += operand
     }
 
     fun minus(operand: Int) {
-        this.number -= operand
+        this._number -= operand
     }
 
     fun multiply(operand: Int) {
-        this.number *= operand
+        this._number *= operand
     }
 
     fun divide(operand: Int) {
@@ -21,6 +24,6 @@ class Calculator(
             throw IllegalArgumentException("0으로 나눌 수 없습니다.")
         }
 
-        this.number /= operand
+        this._number /= operand
     }
 }
