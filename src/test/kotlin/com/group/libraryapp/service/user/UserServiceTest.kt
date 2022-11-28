@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import java.util.*
 
 @SpringBootTest
 class UserServiceTest @Autowired constructor(
@@ -62,8 +63,8 @@ class UserServiceTest @Autowired constructor(
     @DisplayName("유저명 변경이 정상 동작한다")
     fun updateUserNameTest() {
         // given
-        val savedUser = userRepository.save(User("A", null))
-        val request = UserUpdateRequest(savedUser.id, "B")
+        val savedUser = userRepository.save(User("A", null, Collections.emptyList(), null))
+        val request = UserUpdateRequest(savedUser.id!!, "B")
 
         // when
         userService.updateUserName(request)
@@ -77,7 +78,7 @@ class UserServiceTest @Autowired constructor(
     @DisplayName("유저 삭제가 정상 동작한다")
     fun deleteUserTest() {
         // given
-        userRepository.save(User("A", null))
+        userRepository.save(User("A", null, mutableListOf(), ))
 
         // when
         userService.deleteUser("A")
