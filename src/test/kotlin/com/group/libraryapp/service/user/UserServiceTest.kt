@@ -42,10 +42,12 @@ class UserServiceTest @Autowired constructor(
     @DisplayName("유저 조회가 정상 동작한다")
     fun getUsersTest() {
         // given
-        userRepository.saveAll(listOf(
-            User("A", 20),
-            User("B", null),
-        ))
+        userRepository.saveAll(
+            listOf(
+                User("A", 20),
+                User("B", null),
+            )
+        )
 
         // when
         val users = userService.getUsers()

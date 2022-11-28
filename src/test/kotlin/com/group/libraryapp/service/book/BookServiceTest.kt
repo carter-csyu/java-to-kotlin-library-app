@@ -76,7 +76,7 @@ class BookServiceTest @Autowired constructor(
         val request = BookLoanRequest("유춘상", "클린코드")
 
         // expect
-        val message = assertThrows<IllegalArgumentException>{
+        val message = assertThrows<IllegalArgumentException> {
             bookService.loanBook(request)
         }.message
         assertThat(message).isEqualTo("진작 대출되어 있는 책입니다")
