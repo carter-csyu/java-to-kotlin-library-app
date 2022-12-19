@@ -54,12 +54,8 @@ class BookService(
         val books = bookRepository.findAll()
 
         for (book in books) {
-            val targetDto = results.firstOrNull{ dto -> book.type == dto.type }
-            if (targetDto == null) {
-                results.add(BookStatResponse(book.type, 1))
-            } else {
-                targetDto.plusOne()
-            }
+            results.firstOrNull{ dto -> book.type == dto.type }?.plusOne()
+                ?: results.add(BookStatResponse(book.type, 1))
         }
 
         return results
